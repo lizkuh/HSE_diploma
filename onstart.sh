@@ -15,4 +15,5 @@ pip install datasets loralib sentencepiece
 pip install transformers
 # is it okay version?
 pip install peft
-pip install bitsandbytes
+pip install bitsandbytes==0.37.2
+# pip install bitsandbytes
