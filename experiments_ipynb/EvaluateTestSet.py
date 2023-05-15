@@ -9,28 +9,43 @@ import tqdm
 
 from T2CEvaluator import T2CEvaluator
 
-    
-def generate_test_prompt(data_point, train = False):
-    # To decrease expectations of results :)
-    assert train == False
-    # sorry about the formatting disaster gotta move fast
-    if data_point["input"]:
-        return f"""Below is an instruction that describes a task, paired with an input that provides further context. Write a response that appropriately completes the request.
-### Instruction:
-{data_point["instruction"]}
+from prompter import Prompter
+prompter = Prompter()
 
-### Input:
-{data_point["input"]}
-
-### Response:
-{data_point["output"] if train else ''}"""
+def generate_test_prompt(data_point):
+    #assert 'output' not in data_point or data_point['output']==''
+    if "input" in data_point and data_point["input"]:
+        return prompter.generate_prompt(instruction = data_point["instruction"],
+                                        input = data_point["input"],
+                                        #label = ''#data_point["output"]
+                                       )
     else:
-        return f"""Below is an instruction that describes a task. Write a response that appropriately completes the request.
-### Instruction:
-{data_point["instruction"]}
+        return prompter.generate_prompt(instruction = data_point["instruction"],
+                                        #input = None,
+                                        #label = ''#data_point["output"]
+                                       )
+   
+# def generate_test_prompt(data_point, train = False):
+#     # To decrease expectations of results :)
+#     assert train == False
+#     # sorry about the formatting disaster gotta move fast
+#     if data_point["input"]:
+#         return f"""Below is an instruction that describes a task, paired with an input that provides further context. Write a response that appropriately completes the request.
+# ### Instruction:
+# {data_point["instruction"]}
 
-### Response:
-{data_point["output"] if train else ''}"""
+# ### Input:
+# {data_point["input"]}
+
+# ### Response:
+# {data_point["output"] if train else ''}"""
+#     else:
+#         return f"""Below is an instruction that describes a task. Write a response that appropriately completes the request.
+# ### Instruction:
+# {data_point["instruction"]}
+
+# ### Response:
+# {data_point["output"] if train else ''}"""
 
 
 class EvaluateTestSet:
@@ -51,6 +66,7 @@ class EvaluateTestSet:
        
     def preprocess(self, s):
         #ToDo rewrite it using Promt Template
+        #prompter.get_response(s)
         s = s.split('### Response:\n')[-1]
         s = s.replace('\n', '  ')
         s = s.replace('<unk>', " ")
