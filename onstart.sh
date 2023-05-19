@@ -17,3 +17,7 @@ pip install transformers
 pip install peft
 pip install bitsandbytes==0.37.2
 # pip install bitsandbytes
+
+apt install vim -y
+apt install zip -y
+df -h . >> disk_stats.txt
