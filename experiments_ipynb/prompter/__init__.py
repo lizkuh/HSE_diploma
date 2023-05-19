@@ -10,9 +10,13 @@ from typing import Union
 class Prompter(object):
     __slots__ = ("template", "_verbose")
     path = '/'.join(__file__.split('/')[:-1]) + '/' + 'templates/'
-    def __init__(self, template_name: str = "", verbose: bool = False):
+    def __init__(self, 
+                 template_name: str = "", 
+                 verbose: bool = False
+                ):
         print(self.path)
         self._verbose = verbose
+        
         if not template_name:
             # Enforce the default here, so the constructor can be called with '' and will not break.
             template_name = "alpaca"
@@ -46,6 +50,7 @@ class Prompter(object):
             res = f"{res}{label}"
         if self._verbose:
             print(res)
+        
         return res
 
     def get_response(self, output: str) -> str:

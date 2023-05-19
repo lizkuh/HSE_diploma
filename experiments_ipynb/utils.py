@@ -29,11 +29,15 @@ def load_model_tokenizer_from_pretrained(default_model,
     )
 
     tokenizer = LLaMATokenizer.from_pretrained(BASE_MODEL)
-    model.config.pad_token_id = tokenizer.pad_token_id = 0  # unk
+    #model.config.pad_token_id = tokenizer.pad_token_id = 0  # unk
+    #model.config.bos_token_id = 1
+    #model.config.eos_token_id = 2
+
     tokenizer.padding_side = "left"
     # not sure how necessary this part is, not sure if tloen/alpaca-lora-7b was even trained with EOS and BOS tokens
-    model.config.bos_token_id = 1
-    model.config.eos_token_id = 2
+    #raise ValueError("Change this")
+    # model.config.bos_token_id = 1
+    # model.config.eos_token_id = 2
 
     model.eval()
     

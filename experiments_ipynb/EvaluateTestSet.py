@@ -24,7 +24,7 @@ def generate_test_prompt(data_point):
                                         #input = None,
                                         #label = ''#data_point["output"]
                                        )
-   
+
 # def generate_test_prompt(data_point, train = False):
 #     # To decrease expectations of results :)
 #     assert train == False
@@ -66,7 +66,8 @@ class EvaluateTestSet:
        
     def preprocess(self, s):
         #ToDo rewrite it using Promt Template
-        #prompter.get_response(s)
+        s = prompter.get_response(s)
+        
         s = s.split('### Response:\n')[-1]
         s = s.replace('\n', '  ')
         s = s.replace('<unk>', " ")
