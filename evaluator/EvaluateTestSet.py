@@ -9,21 +9,21 @@ import tqdm
 
 from T2CEvaluator import T2CEvaluator
 
-from prompter import Prompter
-prompter = Prompter()
+from prompter import generate_test_prompt, get_response
+# prompter = Prompter()
 
-def generate_test_prompt(data_point):
-    #assert 'output' not in data_point or data_point['output']==''
-    if "input" in data_point and data_point["input"]:
-        return prompter.generate_prompt(instruction = data_point["instruction"],
-                                        input = data_point["input"],
-                                        #label = ''#data_point["output"]
-                                       )
-    else:
-        return prompter.generate_prompt(instruction = data_point["instruction"],
-                                        #input = None,
-                                        #label = ''#data_point["output"]
-                                       )
+# def generate_test_prompt(data_point):
+#     #assert 'output' not in data_point or data_point['output']==''
+#     if "input" in data_point and data_point["input"]:
+#         return prompter.generate_prompt(instruction = data_point["instruction"],
+#                                         input = data_point["input"],
+#                                         #label = ''#data_point["output"]
+#                                        )
+#     else:
+#         return prompter.generate_prompt(instruction = data_point["instruction"],
+#                                         #input = None,
+#                                         #label = ''#data_point["output"]
+#                                        )
    
 # def generate_test_prompt(data_point, train = False):
 #     # To decrease expectations of results :)
@@ -66,8 +66,8 @@ class EvaluateTestSet:
        
     def preprocess(self, s):
         #ToDo rewrite it using Promt Template
-        #prompter.get_response(s)
-        s = s.split('### Response:\n')[-1]
+        get_response(s)
+        #s = s.split('### Response:\n')[-1]
         s = s.replace('\n', '  ')
         s = s.replace('<unk>', " ")
         s = ' '.join(s.split(' ')[:100])

@@ -20,4 +20,8 @@ pip install bitsandbytes==0.37.2
 
 apt install vim -y
 apt install zip -y
+
+mkdir /root/experiments/
+mkdir /root/results/
+
 df -h . >> disk_stats.txt

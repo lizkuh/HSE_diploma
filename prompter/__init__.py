@@ -55,3 +55,36 @@ class Prompter(object):
 
     def get_response(self, output: str) -> str:
         return output.split(self.template["response_split"])[1].strip()
+    
+prompter = Prompter()
+
+def generate_test_prompt(data_point):
+    if "input" in data_point and data_point["input"]:
+        return prompter.generate_prompt(instruction = data_point["instruction"],
+                                        input = data_point["input"],
+                                        #label = ''#data_point["output"]
+                                       )
+    else:
+        return prompter.generate_prompt(instruction = data_point["instruction"],
+                                        #input = None,
+                                        #label = ''#data_point["output"]
+                                       )
+    
+def generate_prompt(data_point):
+    if "input" in data_point and data_point["input"]:
+        return prompter.generate_prompt(instruction = data_point["instruction"],
+                                        input = data_point["input"],
+                                        label = data_point["output"]
+                                       )
+    else:
+        return prompter.generate_prompt(instruction = data_point["instruction"],
+                                        #input = None,
+                                        label = data_point["output"]
+                                       )
+    
+def get_response(s: str):
+    #print(s)
+    #print('===')
+    s = s.split('### Response:\n')[-1]
+    return s
+    #return prompter.get_response(s)
