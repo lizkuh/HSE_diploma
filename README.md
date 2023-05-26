@@ -29,7 +29,13 @@
    test it ```ssh -i ~/.ssh/master root@65.124.131.190```
 7. Run experiments from ipynb/*.ipynb (it get data from experiments_configs, data, save data to experiments folder that is in .gitignore)
 
-8. For complex evaluation use ipynb/evaluate.ipynb
+8. To Evaluate model:
+    fn=38.txt
+    cd /root/HSE_diploma/evaluateFromCodeXGlue/
+    python3 calc_code_bleu.py --refs /root/data/reference_corpus.txt --hyp /root/results/$fn --lang java --params 0.25,0.25,0.25,0.25
+    python3 calculate_bleu/evaluator.py -a=/root/data/answers.json -p=/root/results/$fn
+    
+9. For complex evaluation use ipynb/evaluate.ipynb
 
 ## Known problems:
 

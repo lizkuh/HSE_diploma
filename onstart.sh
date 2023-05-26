@@ -18,6 +18,9 @@ pip install peft
 pip install bitsandbytes==0.37.2
 # pip install bitsandbytes
 
+# to run evaluateFromCodeXGlue
+pip install tree-sitter==0.2.0
+
 apt install vim -y
 apt install zip -y
 
