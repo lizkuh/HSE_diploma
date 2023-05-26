@@ -130,5 +130,9 @@ def _bleu(ref_file, trans_file, subword_option=None):
     with open(trans_file) as fh:
         for line in fh:
             translations.append(line.strip().split())
-    bleu_score, _, _, _, _, _ = compute_bleu(per_segment_references, translations, max_order, smooth)
-    return round(100 * bleu_score,2)
+    #     n_gram_precisions
+    #     geometric_mean_of_n_gram
+    #     precisions
+    #     brevity_penalty
+    bleu_score, precisions, bp, ratio, translation_length, reference_length = compute_bleu(per_segment_references, translations, max_order, smooth)
+    return round(100 * bleu_score,2), precisions, bp, ratio, translation_length, reference_length

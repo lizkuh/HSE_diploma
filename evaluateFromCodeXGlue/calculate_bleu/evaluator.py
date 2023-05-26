@@ -30,7 +30,14 @@ def main():
             if pred.split() == gt.split():
                 EM += 1
 
-    bleu_score = round(_bleu("ground_truth.txt", args.predictions), 2)
+    bleu_score, precisions, bp, ratio, translation_length, reference_length = _bleu("ground_truth.txt", args.predictions)
+    bleu_score = round(bleu_score, 2)
+    print(f"BLEU: {bleu_score}, EM: {round(EM/total*100, 2)}")
+    print(f"precisions: ", precisions)
+    print(f"bp: ", bp)
+    print(f"ratio: ", ratio) 
+    print(f"translation_length: ", translation_length)
+    print(f"reference_length: ", reference_length)
     logger.info(f"BLEU: {bleu_score}, EM: {round(EM/total*100, 2)}")
 
     try:
