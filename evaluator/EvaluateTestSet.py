@@ -66,7 +66,7 @@ class EvaluateTestSet:
        
     def preprocess(self, s):
         #ToDo rewrite it using Promt Template
-        get_response(s)
+        s = get_response(s)
         #s = s.split('### Response:\n')[-1]
         s = s.replace('\n', '  ')
         s = s.replace('<unk>', " ")
