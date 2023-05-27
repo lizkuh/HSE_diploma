@@ -1,3 +1,4 @@
+# How to run: python3 evaluate_experiment.py "t2c_concode_220428_v10"
 # exp_name = "t2c_concode_220428_v33"
 import fire
 
@@ -177,6 +178,7 @@ def evaluate(exp_name: str):
     model.config.eos_token_id = 2
 
     model.eval()
+    model.to('cuda')
     
     def verbose_model_tokenizer(model, tokenizer):
         print("tokenizer.pad_token_id", tokenizer.pad_token_id)
